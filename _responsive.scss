@@ -1,0 +1,60 @@
+// Breakpoints
+
+// Set your desired breakpoints here. Ideally, breakpoints should be set to 
+// where they make sense in the design, not targeted to specific devices.
+
+$breakpoint-xsmall:		"max-width: 430px";
+$breakpoint-footer:		"max-width: 530px";
+$breakpoint-small:		"max-width: 680px";
+$breakpoint-tablet:		"max-width: 767px"; // Matching a native Foundation breakpoint
+$breakpoint-medium:		"max-width: 940px";
+
+
+// Mixins
+
+// responsive: to use, include the following code in your
+// declarations:
+//
+// .class {
+//     some-property: some-value;
+// 
+//     @include responsive($breakpoint) { some-property: some-new-value; }
+// }
+// 
+// By default, the declared media value is "all", but this can
+// be overridden by calling the mixin as:
+// @include responsive($breakpoint, screen)
+// (using "screen" as an example)
+
+@mixin responsive($breakpoint, $media: all) {
+	@media only #{$media} and ($breakpoint) {
+		@content;
+	}
+}
+
+
+// Functions
+
+// calc-rem: calculate the rem value based on the desired pixel 
+// value versus a context value, usually the default font size
+@function calc-rem( $target, $context: $default-font-size ) {
+	@return $target / $context * 1rem;
+}
+
+// Shorthand redeclaration of the above
+@function cr( $target, $context: $default-font-size ) {
+	@return calc-rem( $target, $context );
+}
+
+
+// calc-percent: calculate the percent using the target ÷ context
+// formula, expressed as a percentage.  See Chapter 2 of "Responsive 
+// Web Design" (Marcotte, A Book Apart, 2011)
+@function calc-percent( $target, $context ) {
+	@return $target / $context * 100%;
+}
+
+// Shorthand redeclaration of the above
+@function cp( $target, $context ) {
+	@return calc-percent( $target, $context );
+}
