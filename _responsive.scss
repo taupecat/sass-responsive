@@ -3,11 +3,9 @@
 // Set your desired breakpoints here. Ideally, breakpoints should be set to 
 // where they make sense in the design, not targeted to specific devices.
 
-$breakpoint-xsmall:		"max-width: 430px";
-$breakpoint-footer:		"max-width: 530px";
-$breakpoint-small:		"max-width: 680px";
-$breakpoint-tablet:		"max-width: 767px"; // Matching a native Foundation breakpoint
-$breakpoint-medium:		"max-width: 940px";
+// Example:
+// $breakpoint-large: "min-width: 1350px";
+
 
 
 // Contexts
@@ -15,7 +13,9 @@ $breakpoint-medium:		"max-width: 940px";
 // Not necessarily the same as breakpoints, but a point from which to judge
 // relative values.
 
-$context-small:		420px;
+// Example:
+// $context-small: 420px;
+
 
 
 // Mixins
@@ -40,7 +40,10 @@ $context-small:		420px;
 	}
 }
 
-@mixin retina($media: all) {
+
+// hidpi: same concept as "responsive", except that this is focusing on
+// HiDPI (a.k.a. retina) displays.
+@mixin hidpi($media: all) {
 	@media only #{$media} and (-webkit-min-device-pixel-ratio: 1.3),
 		only #{$media} and (min--moz-device-pixel-ratio: 1.3),
 		only #{$media} and (-o-min-device-pixel-ratio: 1.3/1),
@@ -49,6 +52,12 @@ $context-small:		420px;
 
 		@content;
 	}
+}
+
+// and just because the term "retina" is so widely used, we'll create
+// a mixin that uses that as an alias
+@mixin retina($media: all) {
+	@include hidpi { @content; }
 }
 
 
