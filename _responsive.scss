@@ -1,3 +1,5 @@
+// Variables
+
 // Breakpoints
 
 // Set your desired breakpoints here. Ideally, breakpoints should be set to 
@@ -5,7 +7,6 @@
 
 // Example:
 // $breakpoint-large: "min-width: 1350px";
-
 
 
 // Contexts
@@ -54,10 +55,18 @@
 	}
 }
 
+
 // and just because the term "retina" is so widely used, we'll create
 // a mixin that uses that as an alias
 @mixin retina($media: all) {
-	@include hidpi { @content; }
+	@include hidpi($media) { @content; }
+}
+
+
+// rem: Calculate the rem unit, and return both pixels and rems to support older (non-rem supporting) browsers
+@mixin rem($property, $value, $context: $default-font-size) {
+	#{$property}: $value;
+	#{$property}: cr($value, $context);
 }
 
 
@@ -65,6 +74,8 @@
 
 // calc-rem: calculate the rem value based on the desired pixel 
 // value versus a context value, usually the default font size
+$default-font-size: 16px !default;
+
 @function calc-rem( $target, $context: $default-font-size ) {
 	@return $target / $context * 1rem;
 }
@@ -72,12 +83,6 @@
 // Shorthand redeclaration of the above
 @function cr( $target, $context: $default-font-size ) {
 	@return calc-rem( $target, $context );
-}
-
-// Calculate the rem unit, and return both pixels and rems to support older (non-rem supporting) browsers
-@mixin rem($property, $value) {
-	#{$property}: $value;
-	#{$property}: cr($value);
 }
 
 
