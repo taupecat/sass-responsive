@@ -10,6 +10,14 @@ $breakpoint-tablet:		"max-width: 767px"; // Matching a native Foundation breakpo
 $breakpoint-medium:		"max-width: 940px";
 
 
+// Contexts
+
+// Not necessarily the same as breakpoints, but a point from which to judge
+// relative values.
+
+$context-small:		420px;
+
+
 // Mixins
 
 // responsive: to use, include the following code in your
@@ -32,6 +40,17 @@ $breakpoint-medium:		"max-width: 940px";
 	}
 }
 
+@mixin retina($media: all) {
+	@media only #{$media} and (-webkit-min-device-pixel-ratio: 1.3),
+		only #{$media} and (min--moz-device-pixel-ratio: 1.3),
+		only #{$media} and (-o-min-device-pixel-ratio: 1.3/1),
+		only #{$media} and (min-device-pixel-ratio: 1.3),
+		only #{$media} and (min-resolution: 1.3dppx) {
+
+		@content;
+	}
+}
+
 
 // Functions
 
@@ -44,6 +63,12 @@ $breakpoint-medium:		"max-width: 940px";
 // Shorthand redeclaration of the above
 @function cr( $target, $context: $default-font-size ) {
 	@return calc-rem( $target, $context );
+}
+
+// Calculate the rem unit, and return both pixels and rems to support older (non-rem supporting) browsers
+@mixin rem($property, $value) {
+	#{$property}: $value;
+	#{$property}: cr($value);
 }
 
 
