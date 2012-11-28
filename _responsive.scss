@@ -45,11 +45,13 @@
 // hidpi: same concept as "responsive", except that this is focusing on
 // HiDPI (a.k.a. retina) displays.
 @mixin hidpi($media: all) {
-	@media only #{$media} and (-webkit-min-device-pixel-ratio: 1.3),
-		only #{$media} and (min--moz-device-pixel-ratio: 1.3),
-		only #{$media} and (-o-min-device-pixel-ratio: 1.3/1),
-		only #{$media} and (min-device-pixel-ratio: 1.3),
-		only #{$media} and (min-resolution: 1.3dppx) {
+	@media 
+		only #{$media} and (min--moz-device-pixel-ratio: 1.5),
+		only #{$media} and (-o-min-device-pixel-ratio: 3/2),
+		only #{$media} and (-webkit-min-device-pixel-ratio: 1.5),
+		only #{$media} and (min-device-pixel-ratio: 1.5),
+		only #{$media} and (min-resolution: 144dpi),
+		only #{$media} and (min-resolution: 1.5dppx) {
 
 		@content;
 	}
