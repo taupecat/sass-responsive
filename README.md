@@ -165,3 +165,10 @@ The same basic function as calc-rem(), but for percentages instead. This is used
 
 A shorthand alias for calc-percent().
 
+### hidpi-sprite-adjustment
+
+When using Sass & Compass to generate sprites, there are issues with calculating the position of the HiDPI sprites. See http://blog.teamtreehouse.com/?p=20925 (I'll update this documentation when I get a chance to later.)  This function makes the necessary adjustment for you.
+
+### retina-sprite-adjustment
+
+For those who prefer the term "retina" over "hidpi".

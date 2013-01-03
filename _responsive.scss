@@ -105,3 +105,19 @@ $default-font-size: 16px !default;
 @function cp( $target, $context ) {
 	@return calc-percent( $target, $context );
 }
+
+
+// hidpi-sprite-adjustment
+// when using Sass & Compass to generate sprites, there are issues with calculating the
+// position of the HiDPI sprites. See http://blog.teamtreehouse.com/?p=20925 (I'll update
+// this documentation when I get a chance to later.)  this function makes the necessary
+// adjustment for you.
+@function hidpi-sprite-adjustment($sprite-map, $sprite) {
+	@return round(nth(sprite-position($sprite-map, $sprite), 2) / 2);
+}
+
+// retina-sprite-adjustment
+// prefer the term "retina" over "hidpi". here you go, this aliases the previous function
+@function retina-sprite-adjustment($sprite-map, $sprite) {
+	@return hidpi-sprite-adjustment($sprite-map, $sprite);
+}
