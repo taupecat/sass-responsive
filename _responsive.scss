@@ -18,7 +18,8 @@ $default-font-size: 16px;
 // Contexts
 
 // Not necessarily the same as breakpoints, but a point from which to judge
-// relative values.
+// relative values.  Put common ones here, such as the maximum widht of
+// the content.
 
 // Example:
 // $context-small: 420px;
@@ -40,6 +41,14 @@ $default-font-size: 16px;
 // be overridden by calling the mixin as:
 // @include responsive($breakpoint, screen)
 // (using "screen" as an example)
+// 
+// You can define common breakpoints in the variables section above
+// and reuse them.  Else, you can pass it literally when calling the
+// mixin:
+// 
+// .class {
+//     @include responsive('min-width: 640px') { some-property: some-new-value; }
+// }
 
 @mixin responsive($breakpoint, $media: all) {
 	@media only #{$media} and ($breakpoint) {
@@ -150,6 +159,23 @@ $default-font-size: 16px !default;
 }
 
 
+// calc-em: sometimes, you really need to use ems, not rems,
+// esp. when you're dealing with fonts that should be sized
+// relative to other items in a component, such as headers.
+// Remember to define your context!  Your context will be
+// the font-size of the parent element.
+
+@function calc-em( $target, $context ) {
+	@return $target / $context * 1em;
+}
+
+// Shorthand redeclaration of the above
+
+@function ce( $target, $context ) {
+	@return calc-em( $target, $context );
+}
+
+
 // hidpi-sprite-adjustment
 // when using Sass & Compass to generate sprites, there are issues with calculating the
 // position of the HiDPI sprites. See http://blog.teamtreehouse.com/?p=20925 (I'll update
@@ -160,7 +186,7 @@ $default-font-size: 16px !default;
 }
 
 // retina-sprite-adjustment
-// prefer the term "retina" over "hidpi". here you go, this aliases the previous function
+// prefer the term "retina" over "hidpi"? here you go, this aliases the previous function
 @function retina-sprite-adjustment($sprite-map, $sprite) {
 	@return hidpi-sprite-adjustment($sprite-map, $sprite);
 }
