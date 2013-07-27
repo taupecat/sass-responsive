@@ -48,6 +48,49 @@ $default-font-size: 16px;
 }
 
 
+// breakpoint: Chris Coyier's method for creating media queries.
+// See: http://css-tricks.com/media-queries-sass-3-2-and-codekit/
+// Make up **meaningful** names for your breakpoints so that you
+// and the members of your team can understand and remember them.
+// Also, adjust this mixin for as many breakpoints as you need.
+// You'll likely need finer control for things like font size
+// adjustments, so the "responsive" mixin above can help fill in
+// the gaps.
+// 
+// This is currently set up as mobile first, expanding upwards.
+// You'll need to change "min-width" to "max-width" if you're
+// working from the desktop down.
+
+@mixin breakpoint($breakpoint, $media: all) {
+
+	// Change these values as required
+	$medium: 640px;
+	$large: 1024px;
+	$x-large: 1280px;
+
+	@if $breakpoint == medium {
+		@media only #{$media} and (min-width: $medium) {
+			@content;
+		}
+	} @else if $breakpoint == large {
+		@media only #{$media} and (min-width: $large) {
+			@content;
+		}
+	} @else if $breakpoint == xlarge {
+		@media only #{$media} and (min-width: $x-large) {
+			@content;
+		}
+	}
+}
+
+
+// bp: alias for breakpoint
+
+@mixin bp($breakpoint, $media: all) {
+	@include breakpoint($breakpoint, $media);
+}
+
+
 // hidpi: same concept as "responsive", except that this is focusing on
 // HiDPI (a.k.a. retina) displays.
 @mixin hidpi($media: all) {
