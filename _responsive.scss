@@ -75,7 +75,7 @@ $default-font-size: 16px;
 	// Change these values as required
 	$medium: 640px / $default-font-size + 'em';
 	$large: 1024px / $default-font-size + 'em';
-	$x-large: 1280px / $default-font-size + 'em';
+	$xlarge: 1280px / $default-font-size + 'em';
 
 	@if $breakpoint == medium {
 		@media only #{$media} and (min-width: $medium) {
@@ -86,7 +86,7 @@ $default-font-size: 16px;
 			@content;
 		}
 	} @else if $breakpoint == xlarge {
-		@media only #{$media} and (min-width: $x-large) {
+		@media only #{$media} and (min-width: $xlarge) {
 			@content;
 		}
 	}
