@@ -96,7 +96,9 @@ $default-font-size: 16px;
 // bp: alias for breakpoint
 
 @mixin bp($breakpoint, $media: all) {
-	@include breakpoint($breakpoint, $media);
+	@include breakpoint($breakpoint, $media) {
+		@content
+	}
 }
 
 
