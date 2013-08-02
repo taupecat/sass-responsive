@@ -97,7 +97,7 @@ $default-font-size: 16px;
 
 @mixin bp($breakpoint, $media: all) {
 	@include breakpoint($breakpoint, $media) {
-		@content
+		@content;
 	}
 }
 
