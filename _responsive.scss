@@ -125,10 +125,19 @@ $default-font-size: 16px;
 }
 
 
-// rem: Calculate the rem unit, and return both pixels and rems to support older (non-rem supporting) browsers
+// rem: Calculate the rem unit, and return both pixels and rems
+// to support older (non-rem supporting) browsers
 @mixin rem($property, $value, $context: $default-font-size) {
 	#{$property}: $value;
 	#{$property}: cr($value, $context);
+}
+
+// Since the most common application of this is likely to be 
+// with font-size, I've created a special mixin just for that
+// which will save you a whopping **5 characters** per time you
+// have to type it. Productivity FTW!
+@mixin font-size($font-size) {
+	@include rem(font-size, $font-size);
 }
 
 
