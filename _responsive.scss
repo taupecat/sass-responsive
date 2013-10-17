@@ -4,7 +4,7 @@
 // Because this is so important in many of your calculations as a context,
 // keep your default font size stored as a variable.
 
-$default-font-size: 16px;
+$default-font-size: 16px !default;
 
 // Breakpoints
 
