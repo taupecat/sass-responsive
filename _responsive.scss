@@ -73,9 +73,9 @@ $default-font-size: 16px;
 @mixin breakpoint($breakpoint, $media: all) {
 
 	// Change these values as required
-	$medium: 640px / 16px + 'em';
-	$large: 1024px / 16px + 'em';
-	$xlarge: 1280px / 16px + 'em';
+	$medium: 640px / 16px * 1em;
+	$large: 1024px / 16px * 1em;
+	$xlarge: 1280px / 16px * 1em;
 
 	@if $breakpoint == medium {
 		@media only #{$media} and (min-width: $medium) {
