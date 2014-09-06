@@ -161,7 +161,7 @@ $default-font-size: 16px !default;
 // formula, expressed as a percentage.  See Chapter 2 of "Responsive 
 // Web Design" (Marcotte, A Book Apart, 2011)
 @function calc-percent( $target, $context ) {
-	@return $target / $context * 100%;
+	@return percentage( $target / $context );
 }
 
 // Shorthand redeclaration of the above
